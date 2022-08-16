@@ -1,5 +1,5 @@
 resource "aws_instance" "webserver" {
-  ami           = var.ami_id
+  ami           = data.aws_ami.app_ami.id
   instance_type = var.aws_instance
   associate_public_ip_address   = true
   subnet_id = var.sn_pub
@@ -13,5 +13,15 @@ resource "aws_instance" "webserver" {
 
   tags = {
     Name = "netflix-webserver"
+  }
+}
+
+data "aws_ami" "app_ami" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
   }
 }

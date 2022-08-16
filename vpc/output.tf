@@ -14,6 +14,10 @@ output "snpub_id" {
     value = aws_subnet.projsnpub.id
 }
 
+output "snpub1_id" {
+    value = aws_subnet.projsnpub1.id
+}
+
 output "az_id" {
     value = aws_subnet.projsnpub.availability_zone
 }
