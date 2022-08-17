@@ -14,6 +14,15 @@ resource "aws_instance" "webserver" {
   tags = {
     Name = "netflix-webserver"
   }
+
+  user_data = <<EOF
+#!/bin/bash
+sudo yum update -y
+sudo amazon-linux-extras install nginx1 -y
+sudo systemctl enable nginx
+sudo systemctl start nginx
+EOF
+
 }
 
 data "aws_ami" "app_ami" {

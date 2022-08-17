@@ -14,7 +14,7 @@ variable "instance_type" {
   default = "t2.micro"
 }
 variable "key_pair" {
-  default = "dreonew2"
+  default = "JJtechKeyPair"
 }
 
 variable "sg_id" {

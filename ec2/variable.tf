@@ -15,11 +15,7 @@ variable "sn_pub" {
   
 }
 
-variable "availability_zone" {
-  
-}
-
 variable "key_pair" {
-    default = "linux-demo"
+    default = "JJtechKeyPair"
   
 }

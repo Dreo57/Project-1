@@ -1,10 +1,10 @@
 variable "sg_name" {
-    default = "netflix-web_sg"
+    default = "dreo-web_sg"
   
 }
 
 variable "sg_name1" {
-    default = "netflix-web_sg1"
+    default = "dreo-db_sg"
   
 }
 

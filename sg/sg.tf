@@ -3,15 +3,24 @@ resource "aws_security_group" "ec2_sg" {
   description = "Allow TLS inbound traffic"
   vpc_id      = var.vpc
   dynamic "ingress" {
-    for_each = [80, 22]
+    for_each = [80, 22,]
     iterator = port
     content {
       from_port   = port.value
       to_port     = port.value
       protocol    = "tcp"
       cidr_blocks = var.cidr_blocks_id
+      ipv6_cidr_blocks = ["::/0"]
     }
   }
+    egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks = var.cidr_blocks_id
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
 }
 
 resource "aws_security_group" "rds_sg" {
@@ -25,7 +34,14 @@ resource "aws_security_group" "rds_sg" {
     protocol         = "tcp"
     security_groups  = [aws_security_group.ec2_sg.id]
     ipv6_cidr_blocks = ["::/0"]
-
   }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks = var.cidr_blocks_id
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
 
 }
