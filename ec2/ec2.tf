@@ -12,7 +12,7 @@ resource "aws_instance" "webserver" {
     }
 
   tags = {
-    Name = "netflix-webserver"
+    Name = "netflix-dreo"
   }
 
   user_data = <<EOF
