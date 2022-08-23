@@ -1,4 +1,4 @@
-variable "sg_id" {
+variable "alb-sg_id" {
   
 }
 variable "vpc" {

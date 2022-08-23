@@ -2,7 +2,7 @@ resource "aws_lb" "dre_alb" {
     name = "dreo-alb"
     internal = false
     load_balancer_type = "application"  
-    security_groups    = [var.sg_id]
+    security_groups    = [var.alb-sg_id]
     subnets            = [var.snpub, var.snpub1]  
 }
 
@@ -25,7 +25,8 @@ resource "aws_lb_target_group" "dre-tg" {
     vpc_id = var.vpc
     health_check {
       protocol = "HTTP"
-      path = "/index.html"
+      path = "/"
+      port = 80
     }
   
 }

@@ -16,3 +16,12 @@ variable "cidr_blocks_id" {
 variable "vpc" {
   
 }
+variable "sg_name2" {
+    default = "dreo-ec2_sg"
+  
+}
+
+variable "sg_name3" {
+    default = "dreo-lb_sg"
+  
+}
