@@ -23,26 +23,26 @@ resource "aws_security_group" "ec_sg" {
 
 }
 
-resource "aws_security_group" "rds_sg" {
-  name        = var.sg_name1
-  description = "Allow TLS inbound traffic"
-  vpc_id      = var.vpc
-  ingress {
-    description      = "TLS from VPC"
-    from_port        = 3306
-    to_port          = 3306
-    protocol         = "tcp"
-    security_groups  = [aws_security_group.ec2_sg.id]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks = var.cidr_blocks_id
-    ipv6_cidr_blocks = ["::/0"]
-  }
-}
+# resource "aws_security_group" "rds_sg" {
+#   name        = var.sg_name1
+#   description = "Allow TLS inbound traffic"
+#   vpc_id      = var.vpc
+#   ingress {
+#     description      = "TLS from VPC"
+#     from_port        = 3306
+#     to_port          = 3306
+#     protocol         = "tcp"
+#     security_groups  = [aws_security_group.ec2_sg.id]
+#     ipv6_cidr_blocks = ["::/0"]
+#   }
+#   egress {
+#     from_port        = 0
+#     to_port          = 0
+#     protocol         = "-1"
+#     cidr_blocks = var.cidr_blocks_id
+#     ipv6_cidr_blocks = ["::/0"]
+#   }
+# }
 
 # resource "aws_security_group" "lb_sg" {
 #   name        = var.sg_name3
