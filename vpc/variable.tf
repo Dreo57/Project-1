@@ -15,3 +15,7 @@ variable "route-table-tag" {
   default = ["drenet-pubrt", "drenet-prvtrt"]
   
 }
+variable "main_cidr_block" {
+  default = "190.0.0.0/16"
+  
+}

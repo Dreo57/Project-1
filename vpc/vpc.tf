@@ -1,5 +1,5 @@
 resource "aws_vpc" "projvpc" {
-  cidr_block = "190.0.0.0/16"
+  cidr_block = var.main_cidr_block
   enable_dns_support= true
   enable_dns_hostnames= true
   tags = {
