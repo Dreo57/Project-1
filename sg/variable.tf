@@ -21,7 +21,7 @@ variable "vpc" {
   
 # }
 
-# variable "sg_name3" {
-#     default = "dreo-lb_sg"
+variable "sg_name3" {
+    default = "dreo-lb_sg"
   
-# }
+}

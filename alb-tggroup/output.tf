@@ -4,3 +4,7 @@ output "target-gp-arn" {
 output "elb-id" {
     value = aws_lb.dre_alb.id
 }
+
+# output "target-gp" {
+#     value = aws_lb_target_group.dre-tg.id
+# }

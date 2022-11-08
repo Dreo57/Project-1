@@ -11,6 +11,6 @@ variable "snpub" {
 variable "snpub1" {
   
 }
-variable "dre_temp" {
+# variable "dre_temp" {
   
-}
+# }

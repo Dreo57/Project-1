@@ -11,6 +11,7 @@ resource "aws_security_group" "ec_sg" {
       protocol    = "tcp"
       cidr_blocks = var.cidr_blocks_id
       ipv6_cidr_blocks = ["::/0"]
+      security_groups = [aws_security_group.lb_sg.id]
     }
   }
     egress {
@@ -44,24 +45,24 @@ resource "aws_security_group" "ec_sg" {
 #   }
 # }
 
-# resource "aws_security_group" "lb_sg" {
-#   name        = var.sg_name3
-#   description = "Allow HTTP inbound traffic"
-#   vpc_id      = var.vpc
-#   ingress {
-#     description      = "HTTP from user"
-#     from_port        = 80
-#     to_port          = 80
-#     protocol         = "tcp"
-#     cidr_blocks = var.cidr_blocks_id
-#   }
-#   egress {
-#     from_port        = 0
-#     to_port          = 0
-#     protocol         = "-1"
-#     cidr_blocks = var.cidr_blocks_id
-#   }
-# }
+resource "aws_security_group" "lb_sg" {
+  name        = var.sg_name3
+  description = "Allow HTTP inbound traffic"
+  vpc_id      = var.vpc
+  ingress {
+    description      = "HTTP from user"
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks = var.cidr_blocks_id
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks = var.cidr_blocks_id
+  }
+}
 
 # resource "aws_security_group" "ec2_sg" {
 #   name        = var.sg_name2
