@@ -1,6 +1,6 @@
 resource "aws_instance" "webserver" {
   ami           = data.aws_ami.app_ami.id
-  instance_type = data.aws_ssm_parameter.instance_parameter.value
+  instance_type = data.aws_ssm_parameters_by_path.instance_parameter.values
   associate_public_ip_address   = true
   subnet_id = var.sn_pub
   vpc_security_group_ids =  [var.sg_id]
@@ -22,8 +22,8 @@ data "aws_ssm_parameter" "key_parameter" {
   name = "/Dreo/key"
 }
 
-data "aws_ssm_parameter" "instance_parameter" {
-  name = "/jjtech/ec2/instancetype"
+data "aws_ssm_parameters_by_path" "instance_parameter" {
+  path = "/jjtech/ec2/instancetype"
 }
 
 data "aws_ami" "app_ami" {
