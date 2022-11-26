@@ -4,8 +4,7 @@ resource "aws_instance" "webserver" {
   associate_public_ip_address   = true
   subnet_id = var.sn_pub
   vpc_security_group_ids =  [var.sg_id]
-  key_name = data.aws_ssm_parameter.key_parameter.value
-  
+  key_name = data.aws_ssm_parameter.key_parameter.value  
   root_block_device {
     volume_size = 8
     volume_type = "gp2"
