@@ -23,7 +23,7 @@ data "aws_ssm_parameter" "key_parameter" {
 }
 
 data "aws_ssm_parameter" "instance_parameter" {
-  path = "/Dreo/instance"
+  name = "/Dreo/instance"
 }
 
 data "aws_ami" "app_ami" {
