@@ -10,7 +10,6 @@ resource "aws_security_group" "ec_sg" {
       to_port     = port.value
       protocol    = "tcp"
       cidr_blocks = var.cidr_blocks_id
-      ipv6_cidr_blocks = ["::/0"]
       security_groups = [aws_security_group.lb_sg.id]
     }
   }
@@ -19,7 +18,6 @@ resource "aws_security_group" "ec_sg" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks = var.cidr_blocks_id
-    ipv6_cidr_blocks = ["::/0"]
   }
 
 }
@@ -34,14 +32,12 @@ resource "aws_security_group" "ec_sg" {
 #     to_port          = 3306
 #     protocol         = "tcp"
 #     security_groups  = [aws_security_group.ec2_sg.id]
-#     ipv6_cidr_blocks = ["::/0"]
 #   }
 #   egress {
 #     from_port        = 0
 #     to_port          = 0
 #     protocol         = "-1"
 #     cidr_blocks = var.cidr_blocks_id
-#     ipv6_cidr_blocks = ["::/0"]
 #   }
 # }
 
