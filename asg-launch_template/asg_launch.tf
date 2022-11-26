@@ -44,7 +44,7 @@ resource "aws_launch_template" "dre_temp" {
     Name = "dreo-server"
   }
 
-  # user_data = "${base64encode(file("script.sh"))}"
+  user_data = "${base64encode(file("script.sh"))}"
 
 }
 
