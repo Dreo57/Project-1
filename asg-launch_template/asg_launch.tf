@@ -24,24 +24,27 @@ data "aws_ami" "app_ami" {
   }
 }
 
+data "aws_ssm_parameter" "key_parameter" {
+  name = "/Dreo/key"
+}
+
+data "aws_ssm_parameter" "instance_parameter" {
+  name = "/jjtech/ec2/instancetype"
+}
+
+
 resource "aws_launch_template" "dre_temp" {
   name = "dreo-template"
   description = "launch template for ASG"
   image_id = data.aws_ami.app_ami.id
-  instance_type= var.instance_type
-  key_name=var.key_pair
+  instance_type= data.aws_ssm_parameter.instance_parameter.value
+  key_name= data.aws_ssm_parameter.key_parameter.value
   vpc_security_group_ids =  [var.ec2-sg_id]
   tags = {
     Name = "dreo-server"
   }
 
-#   user_data = <<-EOF
-# #!/bin/bash
-# sudo yum update -y
-# sudo amazon-linux-extras install nginx1 -y
-# sudo systemctl enable nginx
-# sudo systemctl start nginx
-# EOF
+  # user_data = "${base64encode(file("script.sh"))}"
 
 }
 

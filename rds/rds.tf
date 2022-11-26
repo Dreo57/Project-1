@@ -3,7 +3,7 @@ resource "aws_db_instance" "drebase" {
   engine               = var.engine
   engine_version       = "8.0"
   instance_class       = var.instance_class
-  db_name                 = "mydb"
+  db_name              = "mydb"
   username             = var.username
   password             = var.password
   skip_final_snapshot  = true

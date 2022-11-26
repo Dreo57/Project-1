@@ -1,10 +1,14 @@
 resource "aws_vpc" "projvpc" {
-  cidr_block = var.main_cidr_block
+  cidr_block = data.aws_ssm_parameter.vpc_cidr.value
   enable_dns_support= true
   enable_dns_hostnames= true
   tags = {
     Name= "drenet"
   }
+}
+
+data "aws_ssm_parameter" "vpc_cidr" {
+  name = "/Dreo/cidr"
 }
 
 resource "aws_subnet" "projsubnet" {
