@@ -19,8 +19,8 @@ resource "aws_lb_listener" "front-end" {
 
 resource "aws_lb_target_group" "dre-tg" {
     name = "dreo-target-group"
-    target_type = "ip"
-    # target_type = "instance"
+    # target_type = "ip"
+    target_type = "instance"
     protocol = "HTTP"
     port = 80
     vpc_id = var.vpc
