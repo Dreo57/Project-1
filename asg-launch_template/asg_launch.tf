@@ -5,7 +5,7 @@ resource "aws_autoscaling_group" "dreo" {
     id = aws_launch_template.dre_temp.id
     version = "$Latest"
   }
-  vpc_zone_identifier = [var.snpub, var.snpub1]
+  vpc_zone_identifier = [var.snprvt, var.snprvt1]
   target_group_arns = [var.target-group]
   health_check_type = "EC2"
   health_check_grace_period = 300

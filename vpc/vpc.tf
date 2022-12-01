@@ -53,12 +53,42 @@ resource "aws_route_table_association" "prvtrtass" {
 }
 
 resource "aws_route_table_association" "prvtrtass1" {
-  route_table_id = aws_route_table.projpubrt[1].id
+  route_table_id = aws_route_table.projpubrt[2].id
   subnet_id = aws_subnet.projsubnet[3].id
 }
 
-resource "aws_route" "projroute" {
+resource "aws_route" "projroute_igw" {
   route_table_id = aws_route_table.projpubrt[0].id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id = aws_internet_gateway.projgw.id
 }
+
+resource "aws_eip" "projeip" {
+  count = 2
+  vpc = true  
+}
+
+resource "aws_nat_gateway" "projnat" {
+  subnet_id = aws_subnet.projsubnet[0].id
+  connectivity_type = "public"
+  allocation_id = aws_eip.projeip[0].allocation_id
+}
+
+resource "aws_nat_gateway" "projnat1" {
+  subnet_id = aws_subnet.projsubnet[2].id
+  connectivity_type = "public"
+  allocation_id = aws_eip.projeip[1].allocation_id
+}
+
+resource "aws_route" "projroute_ngw" {
+  route_table_id = aws_route_table.projpubrt[1].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.projnat.id
+}
+
+resource "aws_route" "projroute_ngw1" {
+  route_table_id = aws_route_table.projpubrt[2].id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id = aws_nat_gateway.projnat1.id
+}
+

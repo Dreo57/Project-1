@@ -12,6 +12,12 @@ variable "sn_name_tag" {
   default = ["publicsn", "prvtsn","publicsn1", "prvtsn1"]
 }
 variable "route-table-tag" {
+  default = ["drenet-pubrt", "drenet-prvtrt", "drenet-prvtrt1"]
+  
+}
+
+variable "nat-gateway-tag" {
   default = ["drenet-pubrt", "drenet-prvtrt"]
   
 }
+

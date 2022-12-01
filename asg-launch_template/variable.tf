@@ -1,7 +1,7 @@
-variable "snpub" {
+variable "snprvt" {
   
 }
-variable "snpub1" {
+variable "snprvt1" {
   
 }
 
