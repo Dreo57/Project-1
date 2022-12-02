@@ -3,16 +3,18 @@ output "vpc_id" {
 }
 
 output "snpub_id" {
-    value = aws_subnet.projsubnet[0].id
+    value = aws_subnet.projpubsubnet[0].id
 }
-output "snprvt_id" {
-    value = aws_subnet.projsubnet[1].id
-}
+
 output "snpub1_id" {
-    value = aws_subnet.projsubnet[2].id
+    value = aws_subnet.projpubsubnet[1].id
+}
+
+output "snprvt_id" {
+    value = aws_subnet.projprvtsubnet[0].id
 }
 output "snprvt1_id" {
-    value = aws_subnet.projsubnet[3].id
+    value = aws_subnet.projprvtsubnet[1].id
 }
 
 output "route-table-id" {
@@ -23,14 +25,14 @@ output "route-table-id1" {
 }
 
 output "az" {
-    value = aws_subnet.projsubnet[0].availability_zone
+    value = aws_subnet.projpubsubnet[0].availability_zone
 }
 output "az1" {
-    value = aws_subnet.projsubnet[1].availability_zone
+    value = aws_subnet.projpubsubnet[1].availability_zone
 }
 output "az2" {
-    value = aws_subnet.projsubnet[2].availability_zone
+    value = aws_subnet.projprvtsubnet[0].availability_zone
 }
 output "az3" {
-    value = aws_subnet.projsubnet[3].availability_zone
+    value = aws_subnet.projprvtsubnet[1].availability_zone
 }
