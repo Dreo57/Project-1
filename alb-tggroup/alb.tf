@@ -6,7 +6,7 @@ resource "aws_lb" "dre_alb" {
     subnets            = [var.snpub, var.snpub1]  
 }
 
-resource "aws_lb_listener" "front-end" {
+resource "aws_lb_listener" "dreo-listener" {
   load_balancer_arn = aws_lb.dre_alb.arn
   port              = "80"
   protocol          = "HTTP"
