@@ -9,7 +9,7 @@ resource "aws_security_group" "ec_sg" {
       from_port   = port.value
       to_port     = port.value
       protocol    = "tcp"
-      cidr_blocks = var.cidr_blocks_id
+      # cidr_blocks = var.cidr_blocks_id
       security_groups = [aws_security_group.lb_sg.id]
     }
   }
@@ -22,24 +22,40 @@ resource "aws_security_group" "ec_sg" {
 
 }
 
-# resource "aws_security_group" "rds_sg" {
-#   name        = var.sg_name1
-#   description = "Allow TLS inbound traffic"
-#   vpc_id      = var.vpc
-#   ingress {
-#     description      = "TLS from VPC"
-#     from_port        = 3306
-#     to_port          = 3306
-#     protocol         = "tcp"
-#     security_groups  = [aws_security_group.ec2_sg.id]
-#   }
-#   egress {
-#     from_port        = 0
-#     to_port          = 0
-#     protocol         = "-1"
-#     cidr_blocks = var.cidr_blocks_id
-#   }
-# }
+resource "aws_security_group" "rds_sg" {
+  name        = var.sg_name1
+  description = "Allow TLS inbound traffic"
+  vpc_id      = var.vpc
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 3306
+    to_port          = 3306
+    protocol         = "tcp"
+    security_groups  = [aws_security_group.ec_sg.id]
+  }
+  #   ingress {
+  #   description      = "TLS from VPC"
+  #   from_port        = 80
+  #   to_port          = 80
+  #   protocol         = "tcp"
+  #   cidr_blocks = var.cidr_blocks_id
+  # }
+
+  #     ingress {
+  #   description      = "TLS from VPC"
+  #   from_port        = 22
+  #   to_port          = 22
+  #   protocol         = "tcp"
+  #   cidr_blocks = var.cidr_blocks_id
+  # } 
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks = var.cidr_blocks_id
+  }
+}
 
 resource "aws_security_group" "lb_sg" {
   name        = var.sg_name3

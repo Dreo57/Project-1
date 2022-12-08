@@ -3,10 +3,10 @@ variable "sg_name" {
   
 }
 
-# variable "sg_name1" {
-#     default = "dreo-db_sg"
+variable "sg_name1" {
+    default = "dreo-db_sg"
   
-# }
+}
 
 variable "cidr_blocks_id" {
     default = ["0.0.0.0/0"]

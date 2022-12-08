@@ -25,13 +25,21 @@ data "aws_ami" "app_ami" {
 }
 
 data "aws_ssm_parameter" "key_parameter" {
-  name = "/Dreo/key"
+  name = var.key_name
 }
 
 data "aws_ssm_parameter" "instance_parameter" {
-  name = "/Dreo/instance"
+  name = var.instance_id
 }
 
+data "aws_iam_role" "dreo_role" {
+  name = "AWS-SSMFull"  
+}
+
+resource "aws_iam_instance_profile" "dreo_profile" {
+  name = "dreo_inst_profile"  
+  role = data.aws_iam_role.dreo_role.id
+}
 
 resource "aws_launch_template" "dre_temp" {
   name = "dreo-template"
@@ -40,6 +48,9 @@ resource "aws_launch_template" "dre_temp" {
   instance_type= data.aws_ssm_parameter.instance_parameter.value
   key_name= data.aws_ssm_parameter.key_parameter.value
   vpc_security_group_ids =  [var.ec2-sg_id]
+  iam_instance_profile {
+    name = aws_iam_instance_profile.dreo_profile.id
+  }
   tags = {
     Name = "dreo-server"
   }
@@ -47,10 +58,3 @@ resource "aws_launch_template" "dre_temp" {
   user_data = "${base64encode(file("script.sh"))}"
 
 }
-
-
-
-# resource "aws_autoscaling_attachment" "dreo-tg-att" {
-#   autoscaling_group_name = aws_autoscaling_group.dreo.name
-#   elb = var.alb-id
-# }
