@@ -10,6 +10,11 @@ variable "ec2-sg_id" {
 variable "target-group" {
   
 }
-# variable "alb-id" {
-  
-# }
+
+variable "instance_id" {
+    default = "/Dreo/instance"  
+}
+
+variable "key_name" {
+    default = "/Dreo/key"
+}

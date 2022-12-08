@@ -6,6 +6,7 @@ resource "aws_db_instance" "drebase" {
   db_name              = "mydb"
   username             = var.username
   password             = var.password
+  storage_type         = "gp2"
   skip_final_snapshot  = true
   vpc_security_group_ids = [var.rds_sg]
   db_subnet_group_name = var.db_sngp
