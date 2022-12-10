@@ -38,26 +38,26 @@ module "ec2" {
 #     db_sngp = module.db-subnet.db_sngp_id
 # }
 
-module "asg-launch_template" {
-    # source = "../personal-project/asg-launch_template"
-    source = "git::https://github.com/Dreo57/Project-1.git//asg-launch_template"
-    snprvt = module.vpc.snprvt_id
-    snprvt1 = module.vpc.snprvt1_id
-    ec2-sg_id = module.sg.sg_id
-    target-group = module.alb-tggroup.target-gp-arn
-    # alb-id = module.alb-tggroup.elb-id
-}
+# module "asg-launch_template" {
+#     # source = "../personal-project/asg-launch_template"
+#     source = "git::https://github.com/Dreo57/Project-1.git//asg-launch_template"
+#     snprvt = module.vpc.snprvt_id
+#     snprvt1 = module.vpc.snprvt1_id
+#     ec2-sg_id = module.sg.sg_id
+#     target-group = module.alb-tggroup.target-gp-arn
+#     # alb-id = module.alb-tggroup.elb-id
+# }
 
-module "alb-tggroup" {
-    # source = "../personal-project/alb-tggroup"
-    source = "git::https://github.com/Dreo57/Project-1.git//alb-tggroup"
-    vpc = module.vpc.vpc_id
-    # dre_temp = module.asg-launch_template.launch_temp
-    alb-sg_id = module.sg.lb-sg_id
-    snpub = module.vpc.snpub_id
-    snpub1 = module.vpc.snpub1_id
+# module "alb-tggroup" {
+#     # source = "../personal-project/alb-tggroup"
+#     source = "git::https://github.com/Dreo57/Project-1.git//alb-tggroup"
+#     vpc = module.vpc.vpc_id
+#     # dre_temp = module.asg-launch_template.launch_temp
+#     alb-sg_id = module.sg.lb-sg_id
+#     snpub = module.vpc.snpub_id
+#     snpub1 = module.vpc.snpub1_id
     
-}
+# }
 
 # module "ecs" {
 #     # source = "../personal-project/ecs"
