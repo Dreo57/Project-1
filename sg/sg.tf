@@ -10,7 +10,7 @@ resource "aws_security_group" "ec_sg" {
       to_port     = port.value
       protocol    = "tcp"
       cidr_blocks = var.cidr_blocks_id
-      security_groups = [aws_security_group.lb_sg.id]
+      # security_groups = [aws_security_group.lb_sg.id]
     }
   }
     egress {

@@ -1,11 +1,11 @@
 variable "addon_name" {
     default = ["coredns", "kube-proxy", "vpc-cni"]  
 }
-variable "pubsn" {
+variable "prvtsn" {
 
 }
 
-variable "pubsn1" {
+variable "prvtsn1" {
       
 }
 variable "sec_grp" {
