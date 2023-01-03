@@ -1,12 +1,12 @@
 module "vpc" {
-    # source = "../personal-project/vpc"
-    source = "git::https://github.com/Dreo57/Project-1.git//vpc"  
+    source = "../personal-project/vpc"
+    # source = "git::https://github.com/Dreo57/Project-1.git//vpc"  
 }
-# module "sg" {
-#     # source = "../personal-project/sg"
-#     source = "git::https://github.com/Dreo57/Project-1.git//sg"
-#     vpc = module.vpc.vpc_id
-# }
+module "sg" {
+    source = "../personal-project/sg"
+    # source = "git::https://github.com/Dreo57/Project-1.git//sg"
+    vpc = module.vpc.vpc_id
+}
 # module "s3" {
 #     # source = "../personal-project/s3"
 #     source = "git::https://github.com/Dreo57/Project-1.git//s3"
@@ -70,11 +70,11 @@ module "vpc" {
 # }
 
 
-# module "eks" {
-#     source = "../personal-project/eks"
-#     # source = "git::https://github.com/Dreo57/Project-1.git//eks"
-#     pubsn = module.vpc.snpub_id
-#     pubsn1 = module.vpc.snpub1_id
-#     sec_grp = module.sg.sg_id
-# }
+module "eks" {
+    source = "../personal-project/eks"
+    # source = "git::https://github.com/Dreo57/Project-1.git//eks"
+    pubsn = module.vpc.prvtsn_id
+    pubsn1 = module.vpc.prvtsn1_id
+    sec_grp = module.sg.sg_id
+}
 

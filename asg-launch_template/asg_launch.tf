@@ -10,7 +10,7 @@ resource "aws_autoscaling_group" "dreo" {
   health_check_type = "EC2"
   health_check_grace_period = 300
   desired_capacity= 2
-  max_size = 3
+  max_size = 4
   min_size = 2
 }
 
